@@ -70,6 +70,13 @@ const getCountryData = function (countryName) {
       return fetch(`https://restcountries.com/v3.1/alpha/${firstNeighbour}`);
     })
     .then(response => response.json())
-    .then(data => displayCountry(data[0], 'neighbour'));
+    .then(data => displayCountry(data[0], 'neighbour'))
+    .catch(e => {
+      console.error(`${e}`);
+      displayError(`Что-то пошло не так, ${e.message}.Попробуйте еще раз!`)
+    })
 };
-getCountryData('thailand');
+
+btn.addEventListener('click', function () {
+  getCountryData('usa');
+});
